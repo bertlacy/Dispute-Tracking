@@ -1,0 +1,132 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="DisputeTracking.SiteMaster" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+    <head runat="server">
+
+        <title>Dispute Tracking Tool</title>
+
+        <!-- Favicons -->
+	    <link rel="shortcut icon" type="image/x-icon" href="Images/ctl-favicon.ico" />
+	    <link rel="shortcut icon" type="image/png" href="Images/ctl-favicon.png"/>
+		    <!-- Apple devices -->
+	    <link rel="apple-touch-icon" href="Images/ctl-favicon-multi.ico" />
+	    <link rel="apple-touch-icon" sizes="72x72" href="Images/ctl-favicon-multi.ico" />
+	    <link rel="apple-touch-icon" sizes="114x114" href="Images/ctl-favicon-multi.ico" />
+	    <link rel="apple-touch-icon" sizes="144x144" href="Images/ctl-favicon-multi.ico" /> 
+
+        <!-- Main Style -->
+        <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+        
+        <!-- jQuery JS -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+        <!-- Google Icons -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+        <!--  JQuery UI CSS & Dashboard -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+        <link rel="stylesheet" href="/resources/demos/style.css" />
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <!-- Loader -->
+        <script type="text/javascript" src="JavaScript/pace.min.js"></script>
+	    <link href="styles/ctl-pace.css" rel="stylesheet" />
+
+        <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+        </asp:ContentPlaceHolder>
+
+    </head>
+
+    <body style="text-rendering: optimizeLegibility;">
+
+        <div class="user-banner">
+            <asp:Image ID="user" runat="server" ImageUrl="~/Images/user25.png" />&nbsp;&nbsp;Current User: 
+            <asp:Label ID="lblUser" runat="server" Text="" ForeColor="#f1f1f1" CssClass="user-label"></asp:Label>&nbsp;&nbsp; 
+            <asp:Image ID="domain" runat="server" ImageUrl="~/Images/domain25.png" Width="23px" />Current Domain: 
+            <asp:Label ID="lblDomain" runat="server" ForeColor="#f1f1f1" CssClass="domain-label"></asp:Label>
+        </div>
+    
+        <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/logo.png" Width="350px" CssClass="header-image" />
+    
+        <form runat="server" style="display: none; z-index: 999;">
+             
+             <div class="page" style="min-width: 1000px;">
+             
+                  <div class="header">
+             
+                      <div class="title">
+                          <h1>
+                              <span style="text-shadow: 3px 1px 2px rgba(0,0,0,0.7); color: #fff; font-family: 'Google Sans', Cursive; font-weight: 500;">&nbsp;&nbsp;&nbsp;Sales&nbsp;Compensation&nbsp;&bull;&nbsp;Dispute&nbsp;Tracking&nbsp;Tool&nbsp;&nbsp;</span>
+                          </h1>
+                      </div>
+             
+                      <div class="clear hideSkiplink" style="background-color: #87c03f;">
+                      </div>
+             
+                  </div>
+             
+                  <div class="main">
+             
+                      <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" AsyncPostBackTimeout="3600">
+                      </asp:ToolkitScriptManager>
+             
+                      <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+             
+                  </div>
+             
+                  <div class="clear">
+                  </div>
+             
+             </div>
+        </form>
+        <br />
+        <br />
+        <br />
+
+        <div class="clear">
+        </div>
+    
+        <div class="footer-bar">
+            <b style="font-family: 'Google Sans', Helvetica, Arial, Cursive;">CONFIDENTIAL</b><br />&copy;&nbsp;CenturyLink <asp:Label ID="lblCurrentYear" runat="server" /> - This application is the property of the Sales Compensation department and is available to authorized users only.  To request access or report an issue, click <a href="mailto:SalesCompApps@centurylink.com?Subject=Contact Form - Dispute Tracking Tool" class="email-notify" >here</a>.
+        </div>
+    
+        <script type="text/javascript">
+            $(document).ready(function () {
+                console.log('Page Ready at: ' + getDate());
+
+                function addZero(x, n) {
+                    while (x.toString().length < n) {
+                        x = "0" + x;
+                    }
+                    return x;
+                }
+
+                function getDate() {
+                    var d = new Date();
+                    var h = addZero(d.getHours(), 2);
+                    var m = addZero(d.getMinutes(), 2);
+                    var s = addZero(d.getSeconds(), 2);
+                    var ms = addZero(d.getMilliseconds(), 3);
+                    var format = h + ":" + m + ":" + s + "." + ms;
+
+                    return format;
+                }
+
+                $('form').delay(300).fadeIn(1000);
+                console.log('Form Fading In at: ' + getDate());
+
+                if (/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())) 
+                {
+                    console.log('Browser is Chrome, updating Header Font Size. ' + getDate());
+                    $(".header, h1").addClass("header-font-size");
+                }
+            });
+        </script>
+
+    </body>
+</html>
